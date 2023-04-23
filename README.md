@@ -1,1 +1,6 @@
 # MYBUDGET
+Este é um projeto que utiliza a linguagem de programação Python para criar um dashboard de finanças pessoais a partir de dados armazenados em arquivos CSV. O objetivo do projeto é permitir que você acompanhe seus gastos e receitas de forma automatizada, gerando gráficos e visualizações para que você possa entender melhor sua situação financeira.
+
+O projeto utiliza a biblioteca Pandas para ler e escrever os dados em arquivos CSV, permitindo que você carregue os dados em um DataFrame do Pandas para manipulação e processamento. Para criar as visualizações e o dashboard interativo, o projeto utiliza as bibliotecas Plotly e Dash.
+
+É importante ressaltar que este projeto é baseado em um tutorial disponibilizado pelo canal Asimov Academy, uma referência em cursos de programação e tecnologia. O tutorial em questão utiliza arquivos CSV para armazenamento de dados e fornece todos os passos necessários para a criação do projeto, desde a instalação das bibliotecas necessárias até a configuração do dashboard em si.
