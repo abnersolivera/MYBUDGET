@@ -10,10 +10,8 @@ import plotly.express as px
 import numpy as np
 import pandas as pd
 
-
-
-
-
+min_date = date(2020, 1, 1)
+max_date = date(2030, 12, 31)
 
 # ========= Layout ========= #
 layout = dbc.Col([
@@ -43,7 +41,73 @@ layout = dbc.Col([
                 dbc.Modal([
                     dbc.ModalHeader(dbc.ModalTitle('Adicionar receita')),
                     dbc.ModalBody([
-    
+                        dbc.Row([
+                            dbc.Col([
+                                dbc.Label('Descrição '),
+                                dbc.Input(placeholder="Ex. dividendos da bolsa, herança...", id="txt-receita"),
+                            ],width=6),
+                            dbc.Col([
+                                dbc.Label('Valor: '),
+                                dbc.Input(placeholder="$100.00", id="valor_receita", value="")
+                            ],width=6)
+                        ]),
+
+                        dbc.Row([
+                            dbc.Col([
+                                dbc.Label("Date: "),
+                                dcc.DatePickerSingle(id='date-receitas',
+                                    min_date_allowed=min_date,
+                                    max_date_allowed=max_date,
+                                    date=datetime.today(),
+                                    display_format='DD/MM/YYYY',
+                                    style={"width": "100%"}                             
+                                ),
+                            ], width=4),
+
+                            dbc.Col([
+                                dbc.Label("Extras"),
+                                dbc.Checklist(
+                                    options=[],
+                                    value=[],
+                                    id='switches-input-receita',
+                                    switch=True
+                                )
+                            ], width=4),
+
+                            dbc.Col([
+                                html.Label('Categoria da receita'),
+                                dbc.Select(id='select_receita', options=[], value=[])
+                            ], width=4)
+                        ], style={'margin-top': '25px'}),
+
+                        dbc.Row([
+                            dbc.Accordion([
+                                dbc.AccordionItem(children=[
+                                    dbc.Row([
+                                        dbc.Col([
+                                            html.Legend("Adicionar categoria", style={'color': 'green'}),
+                                            dbc.Input(type="text", placeholder="Nova categoria...", id="input-add-receita", value=""),
+                                            html.Br(),
+                                            dbc.Button("Adicionar", className="btn btn-success", id="add-category-receita", style={"margin-top": "20px"}),
+                                            html.Br(),
+                                            html.Div(id="category-div-add-receita", style={}),
+                                        ], width=6),
+
+                                        dbc.Col([
+                                            html.Legend('Excluir categorias', style={'color': 'red'}),
+                                            dbc.Checklist(
+                                                id='checklist-selected-style-receita',
+                                                options=[],
+                                                value=[],
+                                                label_checked_style={'color': 'red'},
+                                                input_checked_style={'backgroundColor': 'blue', 'borderColor': 'orange'},
+                                            ),
+                                            dbc.Button('Remover', color='warning', id='remove-category-receita', style={'margin-top': '20px'}),
+                                        ], width=6)
+                                    ])
+                                ], title='Adicionar/Remover Categoria')
+                            ], flush=True, start_collapsed=True, id='accordion-receita')
+                        ])
                     ])
                 ], id='modal-novo-receita'),
 
